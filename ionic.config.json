@@ -1,5 +1,7 @@
 {
   "name": "locker_system",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
