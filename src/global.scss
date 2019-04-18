@@ -9,3 +9,113 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+
+html {
+    height: 100%;
+}
+
+
+a {
+    color: blue;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.white-box{
+    background: #e6f5ef;
+    padding: 17px 20px;
+    box-shadow: 0 2px 5px rgba(black, 0.08);
+    margin-bottom: 15px;
+}
+
+white-box-no-shadow{
+    background: white;
+    padding: 17px 20px;
+}
+
+.white-box-title{
+    margin-bottom: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+    font-size: 22px;
+}
+
+.title-color{
+	color:white !important; 
+}
+
+.white-box img{
+    max-width: 100%;
+}
+
+
+.white-box .col-1, .white-box .col-2, .white-box .col-3, .white-box .col-4, .white-box .col-5, .white-box .col-6, .white-box .col-7, .white-box .col-8, .white-box .col-9, .white-box .col-10, .white-box .col-11, .white-box .col-12, .white-box .col, .white-box .col-auto, .white-box .col-sm-1, .white-box .col-sm-2, .white-box .col-sm-3, .white-box .col-sm-4, .white-box .col-sm-5, .white-box .col-sm-6, .white-box .col-sm-7, .white-box .col-sm-8, .white-box .col-sm-9, .white-box .col-sm-10, .white-box .col-sm-11, .white-box .col-sm-12, .white-box .col-sm, .white-box .col-sm-auto, .white-box .col-md-1, .white-box .col-md-2, .white-box .col-md-3, .white-box .col-md-4, .white-box .col-md-5, .white-box .col-md-6, .white-box .col-md-7, .white-box .col-md-8, .white-box .col-md-9, .white-box .col-md-10, .white-box .col-md-11, .white-box .col-md-12, .white-box .col-md, .white-box .col-md-auto, .white-box .col-lg-1, .white-box .col-lg-2, .white-box .col-lg-3, .white-box .col-lg-4, .white-box .col-lg-5, .white-box .col-lg-6, .white-box .col-lg-7, .white-box .col-lg-8, .white-box .col-lg-9, .white-box .col-lg-10, .white-box .col-lg-11, .white-box .col-lg-12, .white-box .col-lg, .white-box .col-lg-auto, .white-box .col-xl-1, .white-box .col-xl-2, .white-box .col-xl-3, .white-box .col-xl-4, .white-box .col-xl-5, .white-box .col-xl-6, .white-box .col-xl-7, .white-box .col-xl-8, .white-box .col-xl-9, .white-box .col-xl-10, .white-box .col-xl-11, .white-box .col-xl-12, .white-box .col-xl, .white-box .col-xl-auto{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.white-panel {
+    background: white;
+    padding: 18px 20px;
+    box-shadow: 0 2px 5px rgba(black, 0.05);
+}
+
+
+#head-navbar {
+  width: 100%;
+  white-space: normal;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.col-paddding{
+  padding:10px !important;
+}
+.nav>li {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 20px;
+}
+
+ul.navbar-nav{
+  display: inline-block;
+}
+
+
+.m-15{
+  margin:15px;
+}
+
+.nav-background{
+  background-color : #001d34;
+}
+
+.title-color{
+  color:white;
+}
+
+.box{
+  border: 2px solid #adb5bd;
+  padding: 5px;
+  margin: 10px;
+}
+
+.label-title{
+  margin: 5px;
+  font-size: 20px;
+  font-family: initial;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.label-value{
+  margin: 5px;
+  font-size: 20px;
+  font-family: initial;
+  padding: 5px;
+}

@@ -1,0 +1,88 @@
+<nav class="navbar navbar-light nav-background" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand title-color" [routerLink]="['/locker']" routerLinkActive="active-route">Locker-System</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/assign']" routerLinkActive="active-route">Assign</a></li>
+            <li><a [routerLink]="['/info']" routerLinkActive="active-route" >Info</a></li>
+            <li><a [routerLink]="['/logout']" routerLinkActive="active-route">Logut</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ion-content>
+    <div class="m-15">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Assign Locker
+                    </div>
+                    <div *ngIf="gv.no_of_student_not_assign_locker">
+                        <div class="row m-15">
+                            <div class="col-6">
+                                <label class="label-title">Cupboard No.:</label>
+                            </div>
+                            <div class="col-6">
+                                <select class='form-control cursor-p' [(ngModel)]="cb_id" name="cb_id" (ngModelChange)="updateCbId()">
+                                    <option *ngFor="let cb of gv.cb_ids" [ngValue]="cb">
+                                        {{cb}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row m-15" *ngIf="cb_id" >
+                            <div class="col-6">
+                                <label class="label-title">Locker No.:</label>
+                            </div>
+                            <div class="col-6">
+                                <select class='form-control cursor-p' [(ngModel)]="lk_id" name="lk_id" (ngModelChange)="updateLkId()">
+                                    <option *ngFor="let id of gv.lk_id_ls" [ngValue]="id">
+                                        {{id}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row m-15" *ngIf="lk_id" >
+                            <div class="col-6">
+                                <label class="label-title">Student Roll-No. / Name:</label>
+                            </div>
+                            <div class="col-6">
+                                <select class='form-control cursor-p' [(ngModel)]="roll_no" name="roll_no" (ngModelChange)="updateRollNo()">
+                                    <option *ngFor="let std of gv.active_students_data" [ngValue]="std.roll_no">
+                                        {{std.roll_no}}/{{std.name}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row m-15" *ngIf="roll_no" >
+                            <div class="col-6">
+                                <label class="label-title">From Date:</label>
+                            </div>
+                            <div class="col-6">
+
+                                <input class="date-input" type="text" #dp2="bsDatepicker" [minDate]="yesterday" readonly bsDatepicker [(ngModel)]="from_date" value="{{ from_date | date:'yyyy-MM-dd'}}">
+                            </div>
+                        </div>
+                        <div class="row m-15" *ngIf="from_date" >
+                            <div class="col-6">
+                                <label class="label-title">Upto Date:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="date-input" type="text" #dp2="bsDatepicker" [minDate]="yesterday" readonly bsDatepicker [(ngModel)]="upto_date" value="{{upto_date | date:'yyyy-MM-dd'}}">
+                            </div>
+                        </div>
+                        <div class="row m-15" *ngIf="upto_date">
+                            <div class="col-12 mt-20 text-center">
+                                <button type="button" class="btn btn-success" (click)="assign()">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!gv.no_of_student_not_assign_locker" class="row m-15">
+                        <div class="col-12 mt-20 text-center">
+                            <label class="label-title">All Student Having Lockers!</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

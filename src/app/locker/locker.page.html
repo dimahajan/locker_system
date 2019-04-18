@@ -1,9 +1,87 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>locker</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nav class="navbar navbar-light nav-background" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand title-color" [routerLink]="['/locker']" routerLinkActive="active-route">Locker-System</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/assign']" routerLinkActive="active-route">Assign</a></li>
+            <li><a [routerLink]="['/info']" routerLinkActive="active-route" >Info</a></li>
+            <li><a [routerLink]="['/logout']" routerLinkActive="active-route">Logut</a></li>
+        </ul>
+    </div>
+</nav>
 
 <ion-content>
+    <div class="m-15">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-12 col-paddding">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Lockers expire within 15 days
+                    </div>
+                    <div *ngFor="let exp_data of gv.expired_locker_data" class="row box box-show">
+                        <div class="col-lg-6 col-12">
+                            <span class="label-title">Student Name:</span>
+                            <span class="label-value">{{exp_data.name}}</span>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <span class="label-title">Expire:</span>
+                            <span class="label-value">{{exp_data.upto_date | date}}</span>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <span class="label-title">Cupboard no.:</span>
+                            <span class="label-value">{{exp_data.cb_id}}</span>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <span class="label-title">Locker No:</span>
+                            <span class="label-value">{{exp_data.lk_id}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-12 col-paddding">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Cupboards
+                    </div>
+                    <div *ngFor="let cb_data of gv.cubured_info_data" class="row box">
+                        <div class="col-lg-4 col-sm-6 col-12 text-center">
+                            <span class="label-title">Cupboard:</span>
+                            <span class="label-value">{{cb_data.cb_id}}</span>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12 text-center">
+                            <span class="label-title">{{cb_data.no_of_student_assign}}/{{cb_data.no_of_locker}}</span>
+                        </div>
+                        <div *ngIf="cb_data.no_of_student_assign != cb_data.no_of_locker" class="col-lg-4 col-sm-6 col-12 text-center">
+                            <button type="button" class="btn btn-primary" (click)="assignCupboard(cb_data)">Assign</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-12 col-paddding">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Locker summary
+                    </div>
+                        <div class="row">
+                            <span class="col-6 label-title">No. of Cupboards:</span>
+                            <span class="col-5 label-value">{{gv.cubured_info_data.length}}</span>
+                        </div>
+                        <div class="row">
+                            <span class="col-6 label-title">No. of Lockers:</span>
+                            <span class="col-5 label-value">{{gv.no_of_locker}}</span>
+                        </div>
+                        <div class="row">
+                            <span class="col-6 label-title">No. of stuent having locker :</span>
+                            <span class="col-5 label-value">{{gv.no_of_student_assign_locker}}</span>
+                        </div>
+                        <div class="row">
+                            <span class="col-6 label-title">No. of Student not having Locker:</span>
+                            <span class="col-5 label-value">{{gv.no_of_student_not_assign_locker}}</span>
+                        </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>

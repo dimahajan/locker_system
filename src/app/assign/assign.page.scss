@@ -1,3 +1,7 @@
+.cursor-p{
+  cursor:pointer;
+}
+
 #head-navbar {
   width: 100%;
   white-space: normal;
@@ -5,14 +9,10 @@
   overflow: hidden;
 }
 
-.box-show{
-  background-color: #fbb77c;
-  box-shadow: 0 2px 5px rgba(37, 36, 36, 0.08);
-}
-
 .col-paddding{
   padding:10px !important;
 }
+
 .nav>li {
   display: inline-block;
   white-space: nowrap;
@@ -42,6 +42,7 @@ ul.navbar-nav{
   margin: 10px;
 }
 
+
 .label-title{
   margin: 5px;
   font-size: 20px;
@@ -55,4 +56,42 @@ ul.navbar-nav{
   font-size: 20px;
   font-family: initial;
   padding: 5px;
+}
+
+.cursor-p{
+  cursor:pointer;
+}
+
+.bs-datepicker-container{
+  padding: 4px;
+}
+
+.inputDate{
+  cursor:pointer;
+  width:80%;
+  outline:none;
+  background: blue;
+  border: 0;
+}
+
+.date-input{
+  width:100%;
+  height:100%;
+}
+
+.mt-20{
+  margin-top:20px;
+}
+
+.date-boxd{
+  background: blue;
+  padding: 7px;
+  display: inline-block;
+  width: 134px;
+  border-radius: 22px;
+  text-align: center;
+
+  .material-icons{
+    font-size: 18px;
+  }
 }

@@ -1,32 +1,31 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/locker">locker-system</a>
+<nav class="navbar navbar-light nav-background" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand title-color" [routerLink]="['/locker']" routerLinkActive="active-route">Locker-System</a>
+        </div>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/login">Login</a></li>
-    </ul>
-  </div>
 </nav>
-
-
-<div class="jumbotron text-center">
-  <h1>Login Page</h1>
-</div>
-
-
 <ion-content>
-   <form>
-    <div class="form-group">
-      <label for="usr">Email:</label>
-      <input type="text" [(ngModel)]="email" placeholder="EMAIL" name="email" class="form-control" id="usr">
+    <div class="row m-25">
+        <div class="col-6 offset-3">
+            <div class="white-box">
+                <div class="white-box-title text-center">
+                    Login
+                </div>
+                <div class="row m-25">
+                    <span class="label-title">Email:</span>
+                    <input type="text" [(ngModel)]="email" placeholder="EMAIL" name="email" class="form-control" id="usr">
+                </div>
+                <div class="row m-25">
+                    <span class="label-title">Password:</span>
+                    <input type="password" [(ngModel)]="pass" name="pass" placeholder="PASSWORD" class="form-control" id="pwd">
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center m-25">
+                        <button type="button" class="btn btn-success btn-lg" (click)="signIn()">Sign-In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" [(ngModel)]="pass" name="pass" placeholder="PASSWORD" class="form-control" id="pwd">
-    </div>
-    <div class="text-center">
-        <button type="button" class="btn btn-success btn-lg" (click)="signIn()">Sign-In</button>
-    </div>
-   </form>
 </ion-content>

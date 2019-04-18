@@ -5,6 +5,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'locker', loadChildren: './locker/locker.module#LockerPageModule' },
+  { path: 'assign', loadChildren: './assign/assign.module#AssignPageModule' },
+  { path: 'info', loadChildren: './info/info.module#InfoPageModule' },
+  { path: 'logout', loadChildren: './logout/logout.module#LogoutPageModule' },
+  { path: '**', redirectTo: 'locker', pathMatch: 'full' },
 ];
 
 @NgModule({

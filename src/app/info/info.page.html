@@ -1,0 +1,103 @@
+<nav class="navbar navbar-light nav-background" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand title-color" [routerLink]="['/locker']" routerLinkActive="active-route">Locker-System</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/assign']" routerLinkActive="active-route">Assign</a></li>
+            <li><a [routerLink]="['/info']" routerLinkActive="active-route" >Info</a></li>
+            <li><a [routerLink]="['/logout']" routerLinkActive="active-route">Logut</a></li>
+        </ul>
+    </div>
+</nav>
+<ion-content>
+    <div class="m-15">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-12 col-paddding">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Student Locker Info
+                    </div>
+                    <div class="row m-25">
+                        <div class="col-6">
+                            <label class="label-title">Select Student:</label>
+                        </div>
+                        <div class="col-6">
+                            <select class='form-control cursor-p' [(ngModel)]="roll_no" name="roll_no" (ngModelChange)="getStudentLockerData()">
+                                <option *ngFor="let std of gv.student_info_data" [ngValue]="std.roll_no">
+                                    {{std.roll_no}} / {{std.name}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="m-50" *ngIf="roll_no">
+                        <div class="row box" *ngIf="!gv.student_locker_info.length">
+                            <div class="col-12 text-center">
+                                <label class="label-title">Student not having any Locker!</label>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="gv.student_locker_info.length">
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <td class="label-title">Cupboard No:</td>
+                                        <td class="label-value">{{gv.student_locker_info[0].cb_id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label-title">Locker No:</td>
+                                        <td class="label-value">{{gv.student_locker_info[0].lk_id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label-title">From Date:</td>
+                                        <td class="label-value">{{gv.student_locker_info[0].from_date | date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label-title">Upto Date:</td>
+                                        <td class="label-value">{{gv.student_locker_info[0].upto_date | date}}</td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-12 col-paddding">
+                <div class="white-box">
+                    <div class="white-box-title text-center">
+                        Cupboard Info:
+                    </div>
+                    <div class="row m-25">
+                        <div class="col-6">
+                            <label class="label-title">Select Cupboard Id:</label>
+                        </div>
+                        <div class="col-6">
+                            <select class='form-control cursor-p' [(ngModel)]="cb_id" name="cb_id" (ngModelChange)="getCupboardData()">
+                                <option *ngFor="let cb of gv.cubured_info_data" [ngValue]="cb.cb_id">
+                                    {{cb.cb_id}}
+                            </select>
+                        </div>
+                    </div>
+                        <div *ngFor="let locker of gv.cupboard_info_data" class="box row m-25" [ngClass]="locker.roll_no ? 'box-assign' : ''">
+                            <div [ngClass]="!locker.roll_no ? 'text-center col-12' : 'col-6'">
+                                <span class="label-title">Locker Id:</span>
+                                <span class="label-value">{{locker.lk_id}}</span>
+                            </div>
+                            <div class="col-6" *ngIf="locker.roll_no">
+                                <span class="label-title">Student Name / Roll No:</span>
+                                <span class="label-value">{{locker.name}} / {{locker.roll_no}}</span>
+                            </div>
+                            <div class="col-6" *ngIf="locker.roll_no">
+                                <span class="label-title">From Date:</span>
+                                <span class="label-value">{{locker.from_date | date}}</span>
+                            </div>
+                            <div class="col-6" *ngIf="locker.roll_no">
+                                <span class="label-title">Upto Date:</span>
+                                <span class="label-value">{{locker.upto_date | date}}</span>
+                            </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
