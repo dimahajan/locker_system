@@ -32,7 +32,6 @@ export class LoginPage implements OnInit {
 
     signIn(){
         let par = {email: this.email, password: this.pass};
-        console.log(this.email,this.pass);
         let headers = new Headers({
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'POST, GET',

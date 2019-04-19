@@ -62,7 +62,6 @@ export class AssignPage implements OnInit {
                 this.imgPath= std.img;
             }
         });
-        console.log(this.roll_no, this.gv.active_students_data);
         this.imgPath = this.gv.url + this.imgPath;
     }
 
