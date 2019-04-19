@@ -15,7 +15,7 @@ export class AssignPage implements OnInit {
     cb_ids = [];
     cb_id:any = null;
     lk_id:number;
-
+    imgPath = "./img/adam.jpg";
     from_date:any;
     upto_date:any;
     yesterday = new Date();
@@ -57,6 +57,13 @@ export class AssignPage implements OnInit {
     }
 
     updateRollNo(){
+        this.gv.active_students_data.forEach(std => {
+            if(std.roll_no == this.roll_no){
+                this.imgPath= std.img;
+            }
+        });
+        console.log(this.roll_no, this.gv.active_students_data);
+        this.imgPath = this.gv.url + this.imgPath;
     }
 
     assign(){

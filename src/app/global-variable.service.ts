@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class GlobalVariableService {
 
+    url = "http://localhost/";
     student_locker_info : any = [];
     locker_info : any = [];
     active_students_data : any = [] ;
@@ -45,7 +46,7 @@ export class GlobalVariableService {
     }
 
     getActiveStudents(){
-        this.http.get("http://127.0.0.1/active_students_not_assign_locker.py" , this.options)
+        this.http.get(this.url + "active_students_not_assign_locker.py" , this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -57,7 +58,7 @@ export class GlobalVariableService {
     }
 
     assignLocker(cb_id, lk_id, roll_no, from, upto){
-        this.http.post("http://127.0.0.1/assign_locker.py ", 'cb_id=' + cb_id + '&lk_id=' + lk_id + '&roll_no=' + roll_no + '&from_date=' + from + '&upto_date=' + upto, this.options)
+        this.http.post(this.url + "assign_locker.py ", 'cb_id=' + cb_id + '&lk_id=' + lk_id + '&roll_no=' + roll_no + '&from_date=' + from + '&upto_date=' + upto, this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -70,7 +71,7 @@ export class GlobalVariableService {
     }
 
     getLockerByCupbord(cb_id, std){
-        this.http.post("http://127.0.0.1/locker_info.py", "cb_id="+ cb_id+"&std="+std , this.options)
+        this.http.post(this.url + "locker_info.py", "cb_id="+ cb_id+"&std="+std , this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -97,7 +98,7 @@ export class GlobalVariableService {
     }
 
     getCuburdInfo(){
-        this.http.get("http://127.0.0.1/cuburd_info.py",  this.options)
+        this.http.get(this.url + "cuburd_info.py",  this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -119,7 +120,7 @@ export class GlobalVariableService {
     }
 
    getExpiredDataInfo(){
-        this.http.post("http://127.0.0.1/expired_locker.py", 'day='+ 15 , this.options)
+        this.http.post(this.url + "expired_locker.py", 'day='+ 15 , this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -131,7 +132,7 @@ export class GlobalVariableService {
     }
 
     getStudentInfo(){
-        this.http.post("http://127.0.0.1/student_info.py", "for=all" , this.options)
+        this.http.post(this.url + "student_info.py", "for=all" , this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
@@ -145,7 +146,7 @@ export class GlobalVariableService {
     }
 
     getStudentLockerInfo(roll_no){
-        this.http.post("http://127.0.0.1/get_cb_lk_by_student.py", "roll_no=" + roll_no , this.options)
+        this.http.post(this.url + "get_cb_lk_by_student.py", "roll_no=" + roll_no , this.options)
             .map(res=> res.json())
             .subscribe(data=>{
                 if(data){
