@@ -1,0 +1,196 @@
+	API In Backend:-
+
+1) Login API:- for Adminter login.
+
+	a) URL:			user_login.py
+	b) Method: 		POST
+	c) Body Parameter: {
+				email : '',
+				password: ''
+                           }
+	d) Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+   	e) o/p : if suucess user_info  else  []
+
+
+2) expired locker :- for get how many loker experd upcoming 15 days.
+
+	a) URL:			expired_locker.py
+	b) Method: 		POST
+	c) Body Parameter: {
+				day: '<no_of_day 15>'
+                           }
+	d) Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+   	e) o/p : if success: [
+    				{
+        				"cb_id": num, 
+        				"lk_id": num, 
+        				"name": string, 
+        				"roll_no": num, 
+        				"upto_date": date
+    				}
+			   ]
+		  else  []
+
+
+3) not assign student :- for get how many student not having locker.
+
+	a) URL:			active_students_not_assign_locker.py
+	b) Method: 		GET
+	c) Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+   	d) o/p : if success: [
+    				{
+        				"name": , 
+        				"roll_no": 
+    				}
+			    ]
+		  else  []
+
+
+4) Cuburd Info:- cubred informations
+	a) URL:			cuburd_info.py
+	b) Method: 		GET
+	c) Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+   	d) o/p : if success:[
+				    {
+					"cb_id": , 
+					"no_of_locker": , 
+					"no_of_student": , 
+					"no_of_student_assign": 7
+				    }
+	                   ]
+		  else  []
+
+
+
+5) Loker Information by cupborad:
+	a) URL:		locker_info.py
+	b)Mthod:-	POST
+	c)Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+
+	d) Pramiters:- {cb_id:number , std: Y/N}
+	e) o/p =>if std = Y => [
+    		    {
+        		"from_date": "2019-04-16", 
+        		"lk_id": 1, 
+        		"name": "santosh", 
+        		"roll_no": 14103, 
+        		"upto_date": "2019-04-23"
+    		   }, 
+    		  {
+       		  	"lk_id": 4, 
+       			"roll_no": 0
+    		  }
+		]
+
+	or std = N => 
+		[
+    			{
+        			"assigned": true, 
+        			"lk_id": 1
+    			},  
+    			{
+        			"assigned": false, 
+        			"lk_id": 4
+    			}
+		]
+
+6) Assign Locker:- To assign Locker.
+	a) URL :- assign_locker.py 
+        b)Mthod:-	POST
+	c)Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+	d)Prameter: {
+			cb_id:1,
+			lk_id:2,
+			roll_no:16104,
+			from_date:2019-04-15,
+			upto_date:2020-04-14,
+	            }
+	e)o/p=> {
+    		"cb_id": 1, 
+    		"from_date": "2019-04-15", 
+    		"lk_id": 2, 
+    		"lk_issues_id": 10, 
+    		"roll_no": 16104, 
+    		"upto_date": "2020-04-14"
+		}
+
+
+7) Student Info:-
+	a) URL :- student_info.py
+        b)Mthod:-	POST
+	c)Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+	
+	d)o/p=> if for = all =>
+    		[
+    			{
+        			"name": "santosh", 
+        			"roll_no": 14103
+    			}, 
+		]
+		
+
+8) Student Locker Info:-
+	a) URL :- get_cb_lk_by_student.py
+        b)Mthod:-	POST
+	c)Heders:- 	{
+				'Access-Control-Allow-Origin' : '*', 
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS',
+				'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token', 
+				'Content-Type': 'application/x-www-form-urlencoded',   
+				'Accept': 'application/json'
+	            	}
+	d)Parameter: {
+			roll_no: ;
+		     }
+	e)o/p=> if for = all =>
+    		[
+    			{
+        			"cb_id": 1, 
+        			"from_date": "2019-04-16", 
+        			"lk_id": 1, 
+        			"upto_date": "2019-04-23"
+    			}
+		]
+	or []		
