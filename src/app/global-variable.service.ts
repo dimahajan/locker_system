@@ -24,7 +24,10 @@ export class GlobalVariableService {
     no_of_student_assign_locker: number = 0;
     no_of_student_not_assign_locker: number = 0;
     assign_locker_data : any;
+    edit_locker_data : any;
+    delete_locker_data : any;
     cb_ids : any = [];
+    locker_info_drag_drop :any = [];
     headers = new Headers({
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'POST, GET',
@@ -70,6 +73,33 @@ export class GlobalVariableService {
             });
     }
 
+    deleteLocker(cb_id, lk_id, roll_no, from, upto){
+        this.http.post(this.url + "delete_locker.py ", 'cb_id=' + cb_id + '&lk_id=' + lk_id + '&roll_no=' + roll_no + '&from_date=' + from + '&upto_date=' + upto, this.options)
+            .map(res=> res.json())
+            .subscribe(data=>{
+                if(data){
+                    this.delete_locker_data = data;
+                    this.getCuburdInfo();
+                }
+            },(e)=>{
+                this.FormReg('Some Error');
+            });
+    }
+
+
+    editLocker(cb_id, lk_id, roll_no, from, upto){
+        this.http.post(this.url + "edit_locker.py ", 'cb_id=' + cb_id + '&lk_id=' + lk_id + '&roll_no=' + roll_no + '&from_date=' + from + '&upto_date=' + upto, this.options)
+            .map(res=> res.json())
+            .subscribe(data=>{
+                if(data){
+                    this.edit_locker_data = data;
+                    this.getCuburdInfo();
+                }
+            },(e)=>{
+                this.FormReg('Some Error');
+            });
+    }
+
     getLockerByCupbord(cb_id, std){
         this.http.post(this.url + "locker_info.py", "cb_id="+ cb_id+"&std="+std , this.options)
             .map(res=> res.json())
@@ -79,8 +109,19 @@ export class GlobalVariableService {
                         this.lk_id_ls = [];
                         this.locker_info = data;
                         this.locker_info.forEach(d => d.assigned ? d : this.lk_id_ls.push(d.lk_id));
+
                     } else {
                         this.cupboard_info_data = data;
+                        let ls = [];
+                        data.forEach(d => {
+                            d['edit'] = false;
+                            if(d.from_date){
+                                d.from_date = new Date(d.from_date);
+                                d.upto_date = new Date(d.upto_date);
+                            }
+                            ls.push([d]);
+                        });
+                        this.locker_info_drag_drop = ls;
                     }
                 }
             },(e)=>{
@@ -156,6 +197,4 @@ export class GlobalVariableService {
                 this.FormReg('Some Error');
             });
     }
-
-
 }

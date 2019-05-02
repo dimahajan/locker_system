@@ -43,20 +43,5 @@ def index(req):
                                        break
                         if(rs not in ids):
                                 ls.append({'lk_id': rs, 'roll_no': 0})
-                rls =[int(i['roll_no']) for i in ls ]
-                s = 'select rollno, img from imgpath where rollno in %s'%(str(tuple(rls)))
-                cursor.execute(s);
-
-	        row_headers=[x[0] for x in cursor.description] #this will extract row headers
-                rv = cursor.fetchall()
-                json_data2=[]
-                for result in rv:
-                        json_data2.append(dict(zip(row_headers,result)))
-
-                for i in ls:
-                        for j in json_data2:
-                                if i['roll_no']  == j['rollno']:
-                                        i['img'] = j['img']
-                                        break;
-                        
-        return  json.dumps(ls, indent=4, sort_keys=True, default=str)
+                json_data = ls
+        return  json.dumps(json_data, indent=4, sort_keys=True, default=str)

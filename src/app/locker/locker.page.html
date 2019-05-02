@@ -3,8 +3,8 @@
         <div class="navbar-header">
             <a class="navbar-brand title-color" [routerLink]="['/locker']" routerLinkActive="active-route">Locker-System</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a [routerLink]="['/assign']" routerLinkActive="active-route">Assign</a></li>
+        <ul class="nav navbar-nav"><!--
+                                        <li><a [routerLink]="['/assign']" routerLinkActive="active-route">Assign</a></li> -->
             <li><a [routerLink]="['/info']" routerLinkActive="active-route" >Info</a></li>
             <li><a [routerLink]="['/logout']" routerLinkActive="active-route">Logut</a></li>
         </ul>
@@ -52,9 +52,6 @@
                         <div class="col-lg-4 col-sm-6 col-12 text-center">
                             <span class="label-title">{{cb_data.no_of_student_assign}}/{{cb_data.no_of_locker}}</span>
                         </div>
-                        <div *ngIf="cb_data.no_of_student_assign != cb_data.no_of_locker" class="col-lg-4 col-sm-6 col-12 text-center">
-                            <button type="button" class="btn btn-primary" (click)="assignCupboard(cb_data)">Assign</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -80,6 +77,146 @@
                             <span class="col-5 label-value">{{gv.no_of_student_not_assign_locker}}</span>
                         </div>
 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6 white-box">
+                <div class="row m-15">
+                    <div class="col-6">
+                        <label class="label-title">Cupboard No.:</label>
+                    </div>
+                    <div class="col-6">
+                        <select class='form-control cursor-p' [(ngModel)]="cb_id" name="cb_id" (ngModelChange)="updateCbId()">
+                            <option *ngFor="let cb of gv.cubured_info_data" [ngValue]="cb.cb_id">
+                                {{cb.cb_id}}
+                        </select>
+                    </div>
+                </div>
+
+                <div *ngIf="gv.locker_info_drag_drop.length" class="scroll" >
+                    <div *ngFor="let loc of gv.locker_info_drag_drop">
+                        <div *ngIf="!loc[0].from_date && !loc[0].name" id="{{loc[0].lk_id}}" class='container std-box background-green' [dragula]="MANY_ITEMS" [(dragulaModel)]='loc'>
+                            <div class="row m-15"  >
+                                <div class="col-6">
+                                    <label class="label-title">Locker No.:</label>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{loc[0].lk_id}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!loc[0].from_date && loc[0].name" id="{{loc[0].lk_id}}" class='container std-box background-green'>
+                            <div class="row m-15"  >
+                                <div class="col-6">
+                                    <label class="label-title">Locker No.:</label>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{loc[0].lk_id}}</p>
+                                </div>
+                            </div>
+                            <div *ngIf="loc[0].name" class="row m-15">
+                                <div class="col-6">
+                                    <label class="label-title">Student Avtar:</label>
+                                </div>
+                                <div class="col-6" [dragula]="MANY_ITEMS" [(dragulaModel)]='loc'>
+                                    <div class='std-box'>
+                                        <img src="{{gv.url+loc[0].img}}" class="img-rounded" alt="{loc[0].name}}" style="width:100px">
+                                        <p>{{loc[0].name}} / {{loc[0].roll_no}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row m-15" *ngIf="loc[0].name" >
+                                <div class="col-6">
+                                    <label class="label-title">From Date:</label>
+                                </div>
+                                <div class="col-6">
+
+                                    <input class="date-input" type="text" #dp2="bsDatepicker"  readonly bsDatepicker [(ngModel)]="from_date" value="{{ from_date | date:'yyyy-MM-dd'}}" placement="top">
+                                </div>
+                            </div>
+                            <div class="row m-15" *ngIf="loc[0].name" >
+                                <div class="col-6">
+                                    <label class="label-title">Upto Date:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input class="date-input" type="text" #dp="bsDatepicker"  readonly bsDatepicker [(ngModel)]="upto_date" value="{{upto_date | date:'yyyy-MM-dd'}}" placement="top">
+                                </div>
+                            </div>
+                            <div class="row m-15" *ngIf="upto_date && from_date && loc[0].name">
+                                <div class="col-12 mt-20 text-center">
+                                    <button type="button" class="btn btn-success" (click)="assign(loc[0])">Assign</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="loc[0].from_date" id="{{loc[0].lk_id}}" class='container std-box'>
+                            <div class="row m-15"  >
+                                <div class="col-6">
+                                    <label class="label-title">Locker No.:</label>
+                                </div>
+                                <div class="col-6">
+                                    <p>{{loc[0].lk_id}}</p>
+                                </div>
+                            </div>
+                            <div class="row m-15">
+                                <div class="col-6">
+                                    <label class="label-title">Student Avtar:</label>
+                                </div>
+                                <div class="col-6" [dragula]="MANY_ITEMS" [(dragulaModel)]='loc'>
+                                    <div class='std-box'>
+                                        <img src="{{gv.url+loc[0].img}}" class="img-rounded" alt="{loc[0].name}}" style="width:100px">
+                                        <p>{{loc[0].name}} / {{loc[0].roll_no}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row m-15" *ngIf="loc[0].name" >
+                                <div class="col-6">
+                                    <label class="label-title">From Date:</label>
+                                </div>
+                                <div class="col-6">
+
+                                    <input class="date-input" type="text" #dp2="bsDatepicker"  readonly bsDatepicker [(ngModel)]="loc[0].from_date" value="{{ from_date | date:'yyyy-MM-dd'}}" placement="top" (ngModelChange)="dateChange(loc)">
+                                </div>
+                            </div>
+                            <div class="row m-15" *ngIf="loc[0].name" >
+                                <div class="col-6">
+                                    <label class="label-title">Upto Date:</label>
+                                </div>
+                                <div class="col-6">
+                                    <input class="date-input" type="text" #dp="bsDatepicker"  readonly bsDatepicker [(ngModel)]="loc[0].upto_date" value="{{upto_date | date:'yyyy-MM-dd'}}" (ngModelChange)="dateChange(loc)" placement="top">
+                                </div>
+                            </div>
+                            <div class="row m-15" *ngIf="loc[0].edit">
+                                <div class="col-12 mt-20 text-center">
+                                    <button type="button" class="btn btn-success" (click)="edit1(loc[0])">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="white-box">
+                    <div class="row m-15"  >
+                        <div class="col-12 text-center">
+                            <label class="label-title">Student Not Assign Locker:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center container" [dragula]="MANY_ITEMS" [(dragulaModel)]='gv.active_students_data'>
+                            <div *ngFor="let std of gv.active_students_data" class="row">
+                                <div class="col-12 text-ceter">
+                                    <div class="std-box">
+                                        <img src="{{gv.url+std.img}}" class="img-rounded" alt="{{std.name}}" style="width:100px">
+                                        <p>{{std.name}} / {{std.roll_no}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
