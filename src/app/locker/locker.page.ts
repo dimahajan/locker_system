@@ -53,7 +53,6 @@ export class LockerPage implements OnInit {
                           } else if(targetModel[1]['lk_id']){
                               item['lk_id'] = targetModel[1]['lk_id'];
                               targetModel = [item];
-                              console.log("hi1");
                           } else if(targetModel[0]['lk_id']) {
                               item['lk_id'] = targetModel[0]['lk_id'];
                               targetModel[0] = item;
