@@ -1,0 +1,20 @@
+Ionic app Locker System:-
+
+1)First Page(/login):-
+     -Created the first page for Administer login.
+
+2)Sencond Page(/locker):-    
+    a) Display Lockers expire within 15 days.
+    b) Cupboards Informations: for each Cupboards (id, no-of-locker-assign / no-of-lockers).
+    c) Locker summary: Display (No. of Cupboards, No. of Lockers, No. of students having a locker, No. of Student not having Locker).
+    d) Display Selected Cupboard information, like locker having student info and expire dates, also display empty locker which is in green color.
+    e) Display Student those not having any locker.
+    
+        we can drag-drop students those not have any locker on the selected cupboard-empty-locker, and fill from_date and upto_date and assign that locker to a particular student.
+        we can also edit the date for assign lockers.
+        we can also do the empty locker, using drag the student and drop on the student not having locker div.
+
+3)There'd page:
+    a) shows the information about the selected student.
+    b) shows information about the selected cupboard.
+        
